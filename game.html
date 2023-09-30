@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocabulary Flashcard Game</title>
+    <style>
+        #card {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 200px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Flashcard Vocabulary Game</h1>
+
+<div id="card">Click to reveal definition</div>
+<button id="nextButton">Next</button>
+
+<script>
+    let isFlipped = false;
+    const words = [
+        {word: 'Prominence', definition: 'The state of being important, famous, or noticeable.'},
+        {word: 'Treasury', definition: 'The funds or revenue of a government, corporation, or institution.'},
+        {word: 'Treasury Secretary', definition: 'The head of the government department concerned with finance and monetary matters.'},
+        {word: 'Secretary of State', definition: 'The head of the State Department, responsible for foreign affairs.'},
+        {word: 'Avert', definition: 'To prevent something bad from happening.'},
+        {word: 'Presidential Cabinet', definition: 'A body of high-ranking state officials, typically consisting of the top leaders of the executive branch.'},
+    ];
+    let currentWordIndex = 0;
+
+    document.getElementById('card').addEventListener('click', function() {
+        if (isFlipped) {
+            this.textContent = "Click to reveal definition";
+        } else {
+            this.textContent = `${words[currentWordIndex].word}: ${words[currentWordIndex].definition}`;
+        }
+        isFlipped = !isFlipped;
+    });
+
+    document.getElementById('nextButton').addEventListener('click', function() {
+        currentWordIndex++;
+        if (currentWordIndex >= words.length) {
+            currentWordIndex = 0;
+        }
+        document.getElementById('card').textContent = "Click to reveal definition";
+        isFlipped = false;
+    });
+</script>
+
+</body>
+</html>
